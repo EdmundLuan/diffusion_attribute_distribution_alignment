@@ -1,0 +1,57 @@
+# Default configuration for EMSA image sampling
+# Usage: python scripts/image_sample_emsa.py --config configs/image_emsa.yaml
+
+# Model architecture
+attention_resolutions: "16"
+class_cond: false
+diffusion_steps: 1000
+dropout: 0.0
+learn_sigma: true
+noise_schedule: linear
+num_channels: 128
+num_res_blocks: 1
+num_head_channels: 64
+resblock_updown: true
+use_fp16: true
+use_scale_shift_norm: true
+image_size: 256
+
+# Sampling settings
+timestep_respacing: ddim25
+model_path: models/ffhq_p2.pt
+sample_dir: outputs/debug/emsa/
+num_samples: 24
+batch_size: 24
+seed: 0
+clip_denoised: true
+
+# EMSA parameters
+decay: 0.95
+rho_u: 0.001
+emsa_iters: 3
+minibatch: 24
+chunk: false
+verbose: true
+# EMSA convergence settings
+convergence_mode: both  # "abs", "rel", or "both"
+cost_tol_abs: 1.0e-5
+cost_tol_rel: 1.0e-4
+
+# Classifier guidance (multi-head)
+classifier_name: pcd_all_heads
+classifier_heads:
+  - gender
+  - race
+  - age_group
+classifier_type: image
+reverse_kl: false
+
+# Target distribution for each head
+target_distribution: null
+
+# Temperature annealing
+temp_start: 12.0
+temp_end: 0.5
+temp_schedule: cosine
+cost_scale: 1.0
+compensation_strategy: linear

@@ -1,0 +1,42 @@
+# Default configuration for PG-DPS image sampling
+# Usage: python scripts/image_sample_dps.py --config configs/image_dps.yaml
+  
+# Model architecture
+attention_resolutions: "16"
+class_cond: false
+diffusion_steps: 1000
+dropout: 0.0
+learn_sigma: true
+noise_schedule: linear
+num_channels: 128
+num_res_blocks: 1
+num_head_channels: 64
+resblock_updown: true
+use_fp16: true
+use_scale_shift_norm: true
+image_size: 256
+
+# Sampling settings
+timestep_respacing: ddim25
+model_path: models/ffhq_p2.pt
+sample_dir: outputs/debug/dps/
+num_samples: 10
+batch_size: 5
+seed: 0
+clip_denoised: true
+
+
+# PG-DPS hyperparameters
+dps_scale: 2.0
+
+# Classifier guidance (multi-head)
+classifier_name: pcd_all_heads
+classifier_heads:
+  - gender
+  - race
+  - age_group
+classifier_type: image
+reverse_kl: false
+temperature: 1.0
+
+devices: "0"

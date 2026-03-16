@@ -1,0 +1,13 @@
+{
+    "name": "custom1_gender",
+    "support_sizes": {
+        "age_group": 3, 
+        "gender": 2, 
+        "race": 4
+    }, 
+    "target_distribution": {
+        "age_group": null, 
+        "gender": [0.2, 0.8], 
+        "race": null
+    }
+}
